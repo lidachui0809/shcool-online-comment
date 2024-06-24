@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hmdp.mapper.FollowMapper">
+
+    <select id="querySameFollows" resultType="string"  parameterType="long">
+        SELECT
+            a.follow_user_id AS a_followId
+        FROM
+            tb_follow AS a
+                JOIN
+            tb_follow AS b
+            ON
+                a.follow_user_id = b.follow_user_id
+        WHERE
+            a.user_id = #{blogUserId}
+          AND
+            b.user_id = #{followUserId};
+    </select>
+</mapper>
